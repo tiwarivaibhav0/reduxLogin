@@ -33,48 +33,47 @@ const Dashboard = (props) => {
     console.log("toggle navigation visibility");
   }, []);
 
-  const userMenuMarkup = (
-    <TopBar.UserMenu
-      actions={[
-        {
-          items: [
-            {
-              content: "Logout",
-              icon: ArrowLeftMinor,
-              onAction: () => {
-                sessionStorage.clear();
-                navigate("/");
-              },
-            },
-          ],
-        },
-      ]}
-      name={JSON.parse(sessionStorage.getItem("user")).name}
-      detail={JSON.parse(sessionStorage.getItem("user")).username}
-      initials={JSON.parse(sessionStorage.getItem("user")).name[0]}
-      open={isUserMenuOpen}
-      onToggle={toggleIsUserMenuOpen}
-    />
-  );
-
-  const searchFieldMarkup = (
-    <TopBar.SearchField
-      onChange={handleSearchChange}
-      value={searchValue}
-      placeholder="Search"
-      showFocusBorder
-    />
-  );
-
-  const topBarMarkup = (
-    <TopBar
-      showNavigationToggle
-      userMenu={userMenuMarkup}
-      searchField={searchFieldMarkup}
-      onNavigationToggle={handleNavigationToggle}
-    />
-  );
   if (sessionStorage.getItem("apiKey")) {
+    const userMenuMarkup = (
+      <TopBar.UserMenu
+        actions={[
+          {
+            items: [
+              {
+                content: "Logout",
+                icon: ArrowLeftMinor,
+                onAction: () => {
+                  sessionStorage.clear();
+                  navigate("/");
+                },
+              },
+            ],
+          },
+        ]}
+        name={JSON.parse(sessionStorage.getItem("user")).name}
+        detail={JSON.parse(sessionStorage.getItem("user")).username}
+        initials={JSON.parse(sessionStorage.getItem("user")).name[0]}
+        open={isUserMenuOpen}
+        onToggle={toggleIsUserMenuOpen}
+      />
+    );
+
+    const searchFieldMarkup = (
+      <TopBar.SearchField
+        onChange={handleSearchChange}
+        value={searchValue}
+        placeholder="Search"
+        showFocusBorder
+      />
+    );
+    const topBarMarkup = (
+      <TopBar
+        showNavigationToggle
+        userMenu={userMenuMarkup}
+        searchField={searchFieldMarkup}
+        onNavigationToggle={handleNavigationToggle}
+      />
+    );
     return (
       <>
         <div style={{ height: "250px" }}>
